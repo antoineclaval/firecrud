@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN</title>
+</head>
+<body>
+    <!-- Add the Firebase and Cloud Firestore libraries to your app -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
+     <script src="https://unpkg.com/vue"></script>
+     <script src="https://unpkg.com/vue-firestore"></script>
+     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+
+    <div class = "container" id="app">
+         <p>Total Stressors : {{stressorCount}}</p>
+         <p>Stressor types : {{stressorTypeCount}}</p>
+
+         <ul class="list-group">
+            <li class="list-group-item" v-for= "s in stressors">
+              {{s.name}} <button @click="remove(s)" class="badge">x</button>
+            </li>
+         </ul>
+          
+         <input class="form-control" type="text" v-model="stressor.name" v-on:keyup.enter="add()">
+         <br>
+         <button class="btn btn-primary" @click="add()">Add new</button>
+    </div>
+
+
+
+    <script src="main.js"></script>
+
+</body>
+</html>
