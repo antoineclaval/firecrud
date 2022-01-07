@@ -1,7 +1,7 @@
 const firebaseConfig = {
-  apiKey: "bla",
-  authDomain: "bla",
-  databaseURL: "bla",
+  apiKey: "AIzaSyCdejgGQJhy_Ua0Jg5_9cT4PDiuwyudGko",
+  authDomain: "stressor-c957e.firebaseapp.com",
+  databaseURL: "https://stressor-c957e-default-rtdb.firebaseio.com",
   projectId: "stressor-c957e",
   storageBucket: "stressor-c957e.appspot.com",
   messagingSenderId: "526202936399",
@@ -78,7 +78,9 @@ const db = firebase.firestore();
 
 db.collection("stressors")
     .onSnapshot((doc) => {
-        drawChart()
+        if (document.getElementById('chart_div') ){
+          drawChart()
+        }
     });
 
 Vue.use(VueFirestore);
@@ -101,6 +103,8 @@ new Vue({
   },
   methods: {
     add() {
+      console.log("stressor: "+ this.stressor.name)
+      console.log(this.stressor.name);
       this.$firestore.stressors.add(this.stressor)
       .then(()=>{
         this.stressor.name = ""
