@@ -108,7 +108,7 @@ new Vue({
       },
       showAddFlavor:false,
       stressorTypeCount: "",
-      stressorCount:""
+      stressorCount:0
     }
   },
   methods: {
@@ -137,17 +137,17 @@ new Vue({
       this.$firestore.stressors.doc(e['.key']).delete()
     },
     loadStat: function () {
-      this.$firestore.stressors.get().then(response => {
-        this.stressorCount = response.size;
-      });
+      // this.$firestore.stressors.get().then(response => {
+      //   this.stressorCount = response.size;
+      // });
 
-      new Stressor().getCountMap().then(response => {
-        this.stressorTypeCount = response.length;
-      })
+      // new Stressor().getCountMap().then(response => {
+      //   this.stressorTypeCount = response.length;
+      // })
     }
   },
   mounted(){
-    this.loadStat();
+    //this.loadStat();
   }
 });
 
