@@ -90,6 +90,8 @@ new Vue({
   firestore() {
      return {
        stressors: firebase.firestore().collection("stressors"),
+       orders: firebase.firestore().collection("orders"),
+
      }
   },
   data(){
@@ -97,17 +99,38 @@ new Vue({
       stressor: {
         name: ""
       },
+      order: {
+        name: "",
+        flavor:"Pick a flavor!",
+        color:"Pick a color!",
+        comment:"",
+        timestamp:""
+      },
+      showAddFlavor:false,
       stressorTypeCount: "",
       stressorCount:""
     }
   },
   methods: {
+    place() {
+      console.log("order: "+ this.order)
+      this.order.timestamp = new Date();
+      this.$firestore.orders.add(this.order)
+      .then(()=>{
+        console.log("order placed", this.order);
+      })
+    },
+    showAdd(){
+      this.showAddFlavor = true;
+    },
     add() {
       console.log("stressor: "+ this.stressor.name)
       console.log(this.stressor.name);
       this.$firestore.stressors.add(this.stressor)
       .then(()=>{
-        this.stressor.name = ""
+        this.showAddFlavor = false;
+        this.order.flavor = this.stressor.name;
+        //this.stressor.name = ""
       })
     },
     remove(e) {
