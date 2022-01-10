@@ -85,7 +85,7 @@ db.collection("stressors")
 
 Vue.use(VueFirestore);
 
-new Vue({
+app =new Vue({
   el: "#app",
   firestore() {
      return {
@@ -136,18 +136,12 @@ new Vue({
     remove(e) {
       this.$firestore.stressors.doc(e['.key']).delete()
     },
-    loadStat: function () {
-      // this.$firestore.stressors.get().then(response => {
-      //   this.stressorCount = response.size;
-      // });
-
-      // new Stressor().getCountMap().then(response => {
-      //   this.stressorTypeCount = response.length;
-      // })
+    removeOrder(o){
+      this.$firestore.orders.doc(o['.key']).delete()
     }
   },
   mounted(){
-    //this.loadStat();
+
   }
 });
 
